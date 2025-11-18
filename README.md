@@ -49,8 +49,13 @@ plt.show()
 plot_before_after_mask(fuv_data, fuv_masked, wcs)
 plt.show()
 
-# 4. Full combined panel
+
+# 4. Full combined panl
 plot_all(fuv_data, wcs, sources, matched_fuv)
 plt.show()
 ```
+
+
+Final plot
+<img width="1300" height="600" alt="masked" src="https://github.com/user-attachments/assets/ea86a096-033c-4ada-ac11-dd22b598d106" />
 
