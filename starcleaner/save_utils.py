@@ -26,14 +26,24 @@ def save_skycoord_to_csv(skycoord, filepath):
 def save_plot(df, fits_file, output_plot="masked_stars_plot.png"):
     hdu = fits.open(fits_file)
     w = WCS(hdu[0].header)
+
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(111, projection=w)
+
     ax.imshow(hdu[0].data, origin="lower", cmap="gray")
-    ax.scatter(df["x"], df["y"], s=20, edgecolor="red", facecolor="none")
-    ax.set_xlabel("RA")
-    ax.set_ylabel("DEC")
-    plt.savefig(output_plot, dpi=200)
+
+    # FIX: Tell matplotlib that RA/DEC points are in sky coordinates
+    ax.scatter(df["RA"], df["DEC"],
+               transform=ax.get_transform("icrs"),
+               s=20, edgecolor="red", facecolor="none")
+
+    ax.set_xlabel("RA (deg)")
+    ax.set_ylabel("DEC (deg)")
+    ax.set_title("Masked Stars Overlay")
+
+    plt.savefig(output_plot, dpi=200, bbox_inches="tight")
     plt.close()
     hdu.close()
+
     return output_plot
 
