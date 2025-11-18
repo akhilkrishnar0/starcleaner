@@ -16,6 +16,12 @@ def save_masked_star_data(df, fits_file, output_csv="masked_stars_with_wcs.csv")
     hdu.close()
     return output_csv
 
+def save_skycoord_to_csv(skycoord, filepath):
+	import pandas as pd
+	df = pd.DataFrame({"RA": skycoord.ra.deg, "DEC": skycoord.dec.deg})
+	df.to_csv(filepath, index=False)
+	return filepath
+
 
 def save_plot(df, fits_file, output_plot="masked_stars_plot.png"):
     hdu = fits.open(fits_file)
