@@ -17,6 +17,6 @@ def query_gaia(ra, dec, radius_arcmin=12):
     snr = mu / mu_err
     results['SNR_mu'] = snr
 
-    mask = (snr <= 0) | (snr > 3)
+    mask = (snr > 3) #(snr <= 0) |  check the paper Akhil et al. (2024) The GCS paper
     return results[mask]
 
