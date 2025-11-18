@@ -6,7 +6,7 @@ def create_star_mask(data, wcs, matched_coords, radius_arcsec=3):
     r_pix = radius_arcsec / pixscale
 
     x, y = wcs.world_to_pixel(matched_coords)
-    apertures = CircularAperture(np.transpose([x, y]), r=r_pix.value)
+    apertures = CircularAperture(np.transpose([x, y]), r=r_pix.value) #this has chnaged
 
     mask = np.zeros_like(data, bool)
     for ap in apertures:
