@@ -3,7 +3,7 @@ from astropy.coordinates import SkyCoord
 from astropy import units as u
 import numpy as np
 
-def query_gaia(ra, dec, radius_arcmin=12):
+def query_gaia(ra, dec, radius_arcmin=12m,SNR = 3):
     center = SkyCoord(np.median(ra)*u.deg, np.median(dec)*u.deg)
     radius = radius_arcmin * u.arcmin
 
@@ -17,6 +17,6 @@ def query_gaia(ra, dec, radius_arcmin=12):
     snr = mu / mu_err
     results['SNR_mu'] = snr
 
-    mask = (snr > 3) #(snr <= 0) |  check the paper Akhil et al. (2024) The GCS paper
+    mask = (snr > SNR) #(snr <= 0) |  check the paper Akhil et al. (2024) The GCS paper
     return results[mask]
 
