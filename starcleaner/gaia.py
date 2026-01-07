@@ -3,7 +3,7 @@ from astropy.coordinates import SkyCoord
 from astropy import units as u
 import numpy as np
 
-def query_gaia(ra, dec, radius_arcmin=12m,SNR = 3):
+def query_gaia(ra, dec, radius_arcmin=12,SNR=3):
     center = SkyCoord(np.median(ra)*u.deg, np.median(dec)*u.deg)
     radius = radius_arcmin * u.arcmin
 
